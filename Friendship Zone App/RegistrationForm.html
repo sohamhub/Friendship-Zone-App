@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register - Friendship Zone</title>
+  <div class="header-image">
+    <img src="Friends.PNG" alt="Group of friends">
+  </div>
+  
+  <script>
+    function validateForm(event) {
+      event.preventDefault(); // Prevent form submission
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const age = document.getElementById('age').value.trim();
+
+      const nameRegex = /^[A-Za-z\s]{3,}$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const ageRegex = /^[0-9]+$/;
+
+      if (!nameRegex.test(name)) {
+        alert("Name must be at least 3 characters long and contain only letters.");
+        return;
+      }
+
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      if (!ageRegex.test(age) || parseInt(age) < 18) {
+        alert("Age must be 18 or older and contain only digits.");
+        return;
+      }
+
+      // If validation passes, redirect to user confirmation
+      window.location.href = "RegistrationConfirmation.html";
+    }
+
+    function registerAdmin() {
+      // Directly go to admin confirmation page
+      window.location.href = "RegistrationConfirmationforAdmin.html";
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Register at Friendship Zone</h1>
+  </header>
+
+  <form id="registrationForm">
+    <label for="name">Name (Only users):</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="age">Age:</label>
+    <input type="text" id="age" name="age" required><br><br>
+
+    <button type="submit" onclick="validateForm(event)">Register</button>
+    <button type="button" onclick="registerAdmin()">Register as Admin</button>
+  </form>
+</body>
+</html>
